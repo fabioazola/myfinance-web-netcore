@@ -2,7 +2,34 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h3> Plano de Contas</h3>
+<hr>
+
+<button type="button" class="btn btn-block btn-primary" onclick="CriarPlanoConta">Criar
+
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Descrição</th>
+        <th>Tipo</th>
+    </tr>
+
+    <!--@{
+        foreach(var item in (List<PlanoContaModel>)ViewBag.Lista)
+        {
+            <tr>
+                <th>item.Id</th>
+                <th>item.Descrição</th>
+                <th>item.Tipo</th>
+            </tr>
+        }
+    }-->
+</table>
+
+<script>
+    function CriarPlanoConta()
+     {
+        window.location.href = "../PlanoConta/CriarPlanoConta";    
+    }
+
+</script>
