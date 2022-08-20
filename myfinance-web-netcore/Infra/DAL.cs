@@ -9,7 +9,7 @@ namespace myfinance_web_netcore.Infra
 {
     public class DAL
     {
-        private SqlConnection conn;
+        private SqlConnection? conn;
 
         private string connectionString;
 
@@ -45,7 +45,7 @@ namespace myfinance_web_netcore.Infra
 
         public void Desconectar()
         {
-            conn.Close();
+            //conn.Close();
         }
 
         public DataTable RetornarDataTable(string sql)

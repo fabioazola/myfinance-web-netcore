@@ -14,7 +14,15 @@ namespace myfinance_web_netcore.Models
 
         public string Tipo {get; set;}
 
-        
+        public PlanoContaModel()
+		{
+			Id = 0;
+			Descricao = "";
+			Tipo = "";
+		}
+			
+		
+		
         public List<PlanoContaModel> ListaPlanoContas()
         {
             List<PlanoContaModel> lista = new List<PlanoContaModel>();
@@ -25,11 +33,12 @@ namespace myfinance_web_netcore.Models
 
             for (int i=0; i< dataTable.Rows.Count; i++)
             {
-                var plano_conta = new PlanoContaModel(){
+                /*
+				var plano_conta = new PlanoContaModel(){
                     Id = int.Parse (dataTable.Rows[i]["id"].ToString()),
                     Descricao = dataTable.Rows[i]["descricao"].ToString(),
                     Tipo = dataTable.Rows[i]["tipo"].ToString()                                        
-                };
+                };*/
             }
 
             return lista;
