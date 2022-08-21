@@ -21,7 +21,8 @@ namespace myfinance_web_netcore.Infra
         public static DAL GetInstancia
         {
 
-            get{
+            get
+            {
                 if (Instancia == null)
                     Instancia = new();
 
@@ -38,9 +39,18 @@ namespace myfinance_web_netcore.Infra
 
         public void Conectar()
         {
-            conn =  new();
-            conn.ConnectionString = connectionString;
-            conn.Open();
+            try
+            {
+                Console.WriteLine("Iniciando conexão com o BD");
+                conn = new();
+                conn.ConnectionString = connectionString;
+                conn.Open();
+                Console.WriteLine("Banco conectado");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("falha na abertura do banco de dados = " + ex.ToString());
+            }
         }
 
         public void Desconectar()
@@ -48,6 +58,7 @@ namespace myfinance_web_netcore.Infra
             //conn.Close();
         }
 
+        //SELECT
         public DataTable RetornarDataTable(string sql)
         {
             var dataTable = new DataTable();
@@ -62,8 +73,6 @@ namespace myfinance_web_netcore.Infra
             SqlCommand comando = new SqlCommand(sql, conn);
             //transação
             comando.ExecuteNonQuery();
-
-
         }
 
     }
