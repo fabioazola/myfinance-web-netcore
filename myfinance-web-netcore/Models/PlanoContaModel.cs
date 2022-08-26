@@ -8,7 +8,7 @@ namespace myfinance_web_netcore.Models
 {
     public class PlanoContaModel
     {
-        public int Id {get; set;}
+        public int? Id {get; set;}
 
         public string? Descricao {get; set;}
 
@@ -31,7 +31,7 @@ namespace myfinance_web_netcore.Models
         }
 
 
-        public void Atualizar (int id)
+        public void Atualizar (int? id)
         {
             var objDAL  = DAL.GetInstancia;
             objDAL.Conectar();
@@ -79,7 +79,7 @@ namespace myfinance_web_netcore.Models
         {
             var objDAL  = DAL.GetInstancia;
             objDAL.Conectar();
-            var sql = $"Select id, descricao, tipo from plano_contas whre id = {id}";
+            var sql = $"Select id, descricao, tipo from plano_contas where id = {id}";
             var dataTable = objDAL.RetornarDataTable(sql);
 
                 

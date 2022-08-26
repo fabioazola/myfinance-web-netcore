@@ -29,9 +29,11 @@ namespace myfinance_web_netcore.Controllers
         [HttpGet]
         public IActionResult CriarPlanoConta(int? id)
         {
-            //if (id==null)
-                
-            //else
+            if (id !=null)
+            {
+                var plano_conta = new PlanoContaModel().CarregarPlanoContaPorId(id);
+                ViewBag.PlanoConta = plano_conta;
+            }
 
             return View();
         }
