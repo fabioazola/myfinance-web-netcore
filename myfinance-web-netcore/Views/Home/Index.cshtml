@@ -2,34 +2,6 @@
     ViewData["Title"] = "Home Page";
 }
 
-<h3> Plano de Contas</h3>
-<hr>
-
-<button type="button" class="btn btn-block btn-primary" onclick="CriarPlanoConta">Criar
-
-<table class="table table-bordered">
-    <tr>
-        <th>Id</th>
-        <th>Descrição</th>
-        <th>Tipo</th>
-    </tr>
-
-    <!--@{
-        foreach(var item in (List<PlanoContaModel>)ViewBag.Lista)
-        {
-            <tr>
-                <th>item.Id</th>
-                <th>item.Descrição</th>
-                <th>item.Tipo</th>
-            </tr>
-        }
-    }-->
-</table>
-
-<script>
-    function CriarPlanoConta()
-     {
-        window.location.href = "../PlanoConta/CriarPlanoConta";    
-    }
-
-</script>
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>

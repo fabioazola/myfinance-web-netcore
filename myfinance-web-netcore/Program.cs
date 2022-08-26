@@ -35,8 +35,8 @@ void CriaInstanciaDAL(WebApplication app)
     IConfiguration configuration = app.Configuration;
     DAL.Configuration = configuration;
     var objDAL = DAL.GetInstancia;
-    objDAL.Conectar();
     //TESTE RAPIDO DE CONEXÃO
+    //objDAL.Conectar();
     //objDAL.RetornarDataTable("select * from plano_contas");
-    objDAL.ExecutarCommandoSQL("insert into plano_contas (descricao,tipo) values ('Agua','D')");
+    //objDAL.ExecutarCommandoSQL("insert into plano_contas (descricao,tipo) values ('Agua','D')");
 }
