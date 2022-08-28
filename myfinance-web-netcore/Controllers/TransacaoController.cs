@@ -66,6 +66,19 @@ namespace myfinance_web_netcore.Controllers
             return RedirectToAction("Index");
         }
 
+        
+        [HttpGet]
+	    public IActionResult RelatorioTransacao(string? dataInit, string? dataEnd)
+        {
+            var transacao = new Transacao();
+            
+            if (dataInit==null)
+                ViewBag.Lista = transacao.ListaTransacoes();
+            else
+                ViewBag.Lista = transacao.ListaTransacoesToDates("2022-08-27","2022-08-28");
+            
+            return View();
+       }
 
 
     }

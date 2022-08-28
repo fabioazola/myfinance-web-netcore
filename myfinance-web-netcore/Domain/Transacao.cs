@@ -100,5 +100,41 @@ namespace myfinance_web_netcore.Domain
             return transacao;
         }
 
+        public List<TransacaoModel> ListaTransacoesToDates(String dataInit, String dataEnd)
+        {
+            List<TransacaoModel> lista = new List<TransacaoModel>();
+
+            var objDAL  = DAL.GetInstancia;
+            objDAL.Conectar();
+            
+            var sql = "Select id, data, valor, tipo, historico, id_plano_conta from transacao "+
+                      " where (Data between " +
+                      $"'{dataInit}' and '{dataEnd}') and"+ 
+                      $"(Tipo='D' or Tipo='C')";
+
+            //select * from transacao where 
+                //(data between "2022-08-27" and "2022-08-28")  
+                //and (tipo='D' or tipo='C');
+          
+            var dataTable = objDAL.RetornarDataTable(sql);
+
+            for (int i=0; i< dataTable.Rows.Count; i++)
+            {
+                
+				var transacao = new TransacaoModel(){
+                    Id = int.Parse (dataTable.Rows[i]["id"].ToString()),
+                    Data = DateTime.Parse ((dataTable.Rows[i]["data"].ToString())), 
+                    Valor = Decimal.Parse ((dataTable.Rows[i]["valor"].ToString())), 
+                    Tipo = dataTable.Rows[i]["tipo"].ToString(),
+                    Historico = dataTable.Rows[i]["historico"].ToString(),
+                    IdPlanoConta = int.Parse (dataTable.Rows[i]["id_plano_conta"].ToString())
+                };
+                lista.Add(transacao);
+            }
+
+            return lista;
+        }
+
+
     }
 }
