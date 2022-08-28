@@ -17,7 +17,7 @@
         vId = int.Parse(@ViewBag.Registro.Id.ToString());
         vData = DateTime.Parse(@ViewBag.Registro.Data.ToString()).ToString("yyy-MM-dd");
         vPlanoContaId = int.Parse(@ViewBag.Registro.IdPlanoConta.ToString());
-        vDescricao = @ViewBag.Registro.Descricao.ToString();
+        vDescricao = @ViewBag.Registro.Historico.ToString();
         vTipo = @ViewBag.Registro.Tipo.ToString();
 
         CultureInfo invC = CultureInfo.InvariantCulture;
@@ -66,7 +66,7 @@
                     {
                        if (item.Id.ToString() == vPlanoContaId.ToString())
                        {
-                        <option select value ="@item.Id.ToString()">@item.Descricao.ToString()</option>
+                        <option selected value ="@item.Id.ToString()">@item.Descricao.ToString()</option>
                        }     
                        else
                        {

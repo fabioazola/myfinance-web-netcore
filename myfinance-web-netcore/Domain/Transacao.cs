@@ -28,18 +28,21 @@ namespace myfinance_web_netcore.Domain
         }
 
 
-        /*public void Atualizar (int? id)
+        public void Atualizar (TransacaoModel formulario)
         {
             var objDAL  = DAL.GetInstancia;
             objDAL.Conectar();
-            var sql = "UPDATE PLANO_CONTAS SET " +
-                      $"Descricao = '{Descricao}',"+  
-                      $"Tipo = '{Tipo}'"+
-                      $"Where id = {id}";
+            var sql = "UPDATE TRANSACAO SET " +
+                      $"DATA  = '{formulario.Data.ToString("yyyy-MM-dd")}',"+  
+                      $"VALOR = '{formulario.Valor}',"+
+                      $"Tipo  = '{formulario.Tipo}',"+
+                      $"Historico  = '{formulario.Historico}',"+
+                      $"ID_PLANO_CONTA  = '{formulario.IdPlanoConta}'"+
+                      $" Where id = {formulario.Id}";
 
             objDAL.ExecutarCommandoSQL(sql);
             objDAL.Desconectar();
-        }*/
+        }
 
         public void Excluir (int id)
         {
@@ -77,8 +80,25 @@ namespace myfinance_web_netcore.Domain
             return lista;
         }
 
+        public TransacaoModel TransacaoPorId(int? id)
+        {
+            var objDAL  = DAL.GetInstancia;
+            objDAL.Conectar();
+            
+            var sql = $"Select id, data, valor, tipo, historico, id_plano_conta from transacao WHERE ID = {id}";
+            var dataTable = objDAL.RetornarDataTable(sql);
 
-        
+			var transacao = new TransacaoModel(){
+                    Id = int.Parse (dataTable.Rows[0]["id"].ToString()),
+                    Data = DateTime.Parse ((dataTable.Rows[0]["data"].ToString())), 
+                    Valor = Decimal.Parse ((dataTable.Rows[0]["valor"].ToString())), 
+                    Tipo = dataTable.Rows[0]["tipo"].ToString(),
+                    Historico = dataTable.Rows[0]["historico"].ToString(),
+                    IdPlanoConta = int.Parse (dataTable.Rows[0]["id_plano_conta"].ToString())
+                };
+
+            return transacao;
+        }
 
     }
 }
